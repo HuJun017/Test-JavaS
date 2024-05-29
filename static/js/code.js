@@ -1,6 +1,10 @@
 function getCitta(nazione) {
+
+    //display ON/OFF
     document.getElementById('elencoNazioni').style.display = 'none'
     document.getElementById('elencoCitta').style.display = 'block'
+
+    //dizionario con le informazioni
     let nationDict = {
         'nazioneSelezionato': nazione
     };
@@ -12,24 +16,18 @@ function getCitta(nazione) {
         body: JSON.stringify(nationDict)
     })
     .then(response => response.json())
+    //risposta
     .then(data => {
+        console.log(data)
         let listaCitta = document.getElementById('listaCitta');
         listaCitta.innerHTML = '';
-        //verifica se data è un array
-        if (Array.isArray(data)) {
-            //ciclo per aggiungere le radio button
-            data.forEach(citta => {
+        for (let citta in data) {
+            if (data.hasOwnProperty(citta)) {
+                let clientCount = data[citta];
                 let p = document.createElement('p');
-                let radio = document.createElement('input');
-                radio.type = 'radio';
-                radio.name = 'citta';
-                radio.value = citta;
-                p.appendChild(radio);
-                p.appendChild(document.createTextNode(citta));
+                p.innerHTML = `<input type="radio" name="citta" value="{{ citta }}"> ${citta} (${clientCount})`;
                 listaCitta.appendChild(p);
-            });
-        } else {
-            console.error('Si è verificato un errore:', data.error);
+            }
         }
     })
     .catch(error => {
