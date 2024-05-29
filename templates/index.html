@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type=text/javascript src="{{url_for('static', filename='js/code.js') }}"></script>
+    <title>Elenco Città</title>
+</head>
+<body>
+    <div id="elencoNazioni">
+        <h2>Elenco Nazioni</h2>
+        {% for nazione in elenco %}
+        <p><a href="javascript:void(0)" onclick="getCitta('{{ nazione }}')" id="nazione">{{ nazione }}</a></p>
+        {% endfor %}
+    </div>
+
+    <div id="elencoCitta" style="display: none;">
+        <h2>Elenco Città</h2>
+        <form id="cittaForm">
+            <div id="listaCitta"></div>
+            <p><input type="submit" value="InfoClienti"></p>
+        </form>
+    </div>
+
+</body>
+</html>
