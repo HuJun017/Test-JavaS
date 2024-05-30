@@ -34,3 +34,19 @@ function getCitta(nazione) {
         console.error('Si è verificato un errore:', error);
     });
 }
+
+
+
+function getClienti() {
+    let cittaSelezionata = document.querySelector('input[name="citta"]:checked');
+    let cityDict = {
+        'cittaSelezionata' : cittaSelezionata
+    }
+    fetch('/elencoCitta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cityDict)
+    })
+}

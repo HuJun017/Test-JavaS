@@ -17,12 +17,5 @@ def elencoCitta():
     city_client_count = df[df['Country'] == nazione].groupby('City').size().to_dict()
     return jsonify(city_client_count), 200
 
-@app.route('/elencoClienti', methods=['POST'])
-def elencoCitta():
-    data = request.json
-    nazione = data.get('nazioneSelezionato')
-    city_client_count = df[df['Country'] == nazione].groupby('City').size().to_dict()
-    return jsonify(city_client_count), 200
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3245, debug=True)
